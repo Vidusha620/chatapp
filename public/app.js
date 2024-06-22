@@ -1,11 +1,15 @@
+const chatForm = document.getElementById();
 const socket = io("http://localhost:3000");
 
 socket.on('message',message => {
     console.log(message);
 });
 
-socket.on("message",(data) => {
-    console.log(data);
+chatForm.addEventListener('submit',(e) => {
+    e.preventDefault();
 
-    socket.emit('message','Hello there');
-})
+    const msg = e.target.elements.msg.value;
+
+    socket.emit('text',msg);
+
+});
