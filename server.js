@@ -1,8 +1,7 @@
 const path = require('path');
 const http = require('http');
 const express = require('express');
-const { Socket } = require('socket.io');
-const socketio = require(socket.io);
+const socketio = require('socket.io');
 const formatMessage = require('./utils/texts');
 
 const app = express();
@@ -28,11 +27,11 @@ io.on('connection',socket => {
 
     //Listen to text
     socket.on('chatMessage',(msg) => {
-        io.emit('User','msg');
+        io.emit('message', formatMessage('User', msg));
     });
 });
 
 const PORT = 3000 || process.env.PORT;
 
-server.listen(PORT, () => CONSOLE.LOG('Server running on port ${PORT}'));
+server.listen(PORT, () => console.log('Server running on port ${PORT}'));
 
