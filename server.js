@@ -12,17 +12,18 @@ const io = socketio(server);
 app.use(express.static(path.join(__dirname, 'public')));
 
 io.on('connection',socket => {
-    console.log('New WS Connection...');
+
+    //The admin of the app is Birdie!
     
     //Broadcast to one user
-    socket.emit('message', formatMessage('Chatpool','Welcome to Chatpool!'));
+    socket.emit('message', formatMessage('Birdie','Welcome to Chirps!'));
     
     //Broadcast to all users except the one connecting
-    socket.broadcast.emit('message',formatMessage('Chatpool','New user has joined to the chat'));
+    socket.broadcast.emit('message',formatMessage('Birdie','New user has joined to the chat...'));
 
     //Broadcast to all the users
     socket.on('disconnect',() => {
-        io.emit('message',formatMessage('Chatpool','A user has left the chat'))
+        io.emit('message',formatMessage('Birdie','A user has left the chat...'))
     });
 
     //Listen to text
@@ -33,5 +34,5 @@ io.on('connection',socket => {
 
 const PORT = 3000 || process.env.PORT;
 
-server.listen(PORT, () => CONSOLE.LOG('sERVER RUNNING ON PORT ${PORT}'));
+server.listen(PORT, () => CONSOLE.LOG('Server running on port ${PORT}'));
 

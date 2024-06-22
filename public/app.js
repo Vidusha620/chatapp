@@ -1,7 +1,7 @@
-const chatForm = document.getElementById('chatForm'); // Corrected ID
+const chatForm = document.getElementById('chatForm'); 
 const socket = io("http://localhost:3000");
 
-socket.on('message', (message) => {
+socket.on('message', (message) => { 
     console.log(message);
     outputMessage(message);
 });
@@ -12,8 +12,8 @@ chatForm.addEventListener('submit', (e) => {
     // Get text
     const msg = e.target.elements.msg.value;
 
-    // A message to the server
-    socket.emit('text', msg);
+    // A text to the server
+    socket.emit('message', msg);
 
     //Clear text
     e.target.elements.msg.value = '';
