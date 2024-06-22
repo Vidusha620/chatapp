@@ -1,6 +1,7 @@
 const path = require('path');
 const http = require('http');
 const express = require('express');
+const { Socket } = require('socket.io');
 const socketio = require(socket.io);
 
 const app = express();
@@ -10,7 +11,9 @@ const io = socketio(server);
 app.use(express.static(path.join(__dirname, 'public')));
 
 io.on('connection',socket => {
-    console.log('New WD Connection...');
+    console.log('New WS Connection...');
+
+    socket.emit('message','Welcome to Chat-Pool');
 });
 
 
