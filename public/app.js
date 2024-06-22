@@ -1,5 +1,5 @@
 const chatForm = document.getElementById('chatForm'); 
-const socket = io.connect("http://localhost:3000");
+const socket = io.connect("http://localhost:8080");
 
 socket.on('message', (message) => { 
     console.log(message);
