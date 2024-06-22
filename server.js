@@ -12,8 +12,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 io.on('connection',socket => {
     console.log('New WS Connection...');
+    
+    //Broadcast to one user
+    socket.emit('message','Welcome to Chatpool!');
+    
+    //Broadcast to all users except the one connecting
+    socket.broadcast.emit('message','New user has joined to the chat');
 
-    socket.emit('message','Welcome to Chat-Pool');
+    //Broadcast to all the users
+    socket.on('disconnect',() => {
+        io.emit('message','A user has left the chat')
+    });
 });
 
 

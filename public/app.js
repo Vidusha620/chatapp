@@ -1,7 +1,7 @@
 const socket = io("http://localhost:3000");
 
-socket.on('conect',(response) => {
-    console.log(response);
+socket.on('message',message => {
+    console.log(message);
 });
 
 socket.on("message",(data) => {
