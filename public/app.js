@@ -14,13 +14,17 @@ chatForm.addEventListener('submit', (e) => {
 
     // A message to the server
     socket.emit('text', msg);
+
+    //Clear text
+    e.target.elements.msg.value = '';
+
 });
 
 function outputMessage(message) {
     const div = document.createElement('div');
     div.classList.add('message');
     div.innerHTML = `
-        <p class="meta">Brad <span>9:12pm</span></p>
-        <p class="text">${message}</p>`; 
+        <p class="meta">${message.username}<span>${message.time}</span></p>
+        <p class="text">${message.text}</p>`; 
     document.querySelector('.chat-messages').appendChild(div); 
 }
